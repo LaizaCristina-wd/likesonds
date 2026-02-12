@@ -9,21 +9,27 @@
 
 </head>
 <body>
-    <h1>Playlist hashtag</h1>
-    <img src="img/Rihanna-1.webp" width="200" height="100"></img>
-    <div>
-    <div>Nome da música</div>
-    <div>Nome da banda</div>
-    <div><i class="bi bi-heart"></i></div>
+  <div music-container>
+    <h4 id="playlist-title">Playlist hashtag</h4>
+    <img id="cover" src="img/Rihanna-1.webp"></img>
+    <div id="below">
+    <div id="song-info">
+    <div id="song-name">Nome da música</div>
+    <div id="band-name" class="light-color">Nome da banda</div>
     </div>
-    <div>Barra de progresso</div>
-    <div>
-    <div><i class="bi bi-skip-start-fill"></i></div>
-    <div><i class="bi bi-shuffle"></i></div>
-    <div><i class="bi bi-play-circle-fill"></i></div>
-    <div><i class="bi bi-skip-end-fill"></i></div>
-    <div><i class="bi bi-repeat"></i></div>
+    <div id="like" class="button light-color"><i class="bi bi-heart"></i></div>
     </div>
+    <div id="progress-bar">
+    <div id="current-progress"></div>
+    </div>
+    <div id="button-container">
+    <div id="shuffle" class="button"><i class="bi bi-shuffle"></i></div>
+    <div id="previus" class="button button-navigate"><i class="bi bi-skip-start-fill"></i></div>
+    <div id="start" class="button button-higgest"><i class="bi bi-play-circle-fill"></i></div>
+    <div id="next" class="button button-navigate"><i class="bi bi-skip-end-fill"></i></div>
+    <div id="repeat" class="button"><i class="bi bi-repeat"></i></div>
+    </div>
+   </div>
 </body>
 
 </html>
