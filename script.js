@@ -1,5 +1,7 @@
 const songName = document.getElementById("song-name");
+const bandName = document.getElementById("band-name");
 const song = document.getElementById("audio");
+const cover = document.getElementById("cover");
 const start = document.getElementById("start");
 
 songName.innerText = "Sledgehammer";
