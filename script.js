@@ -5,6 +5,7 @@ const cover = document.getElementById("cover");
 const start = document.getElementById("start");
 const next = document.getElementById("next");
 const previus = document.getElementById("previus");
+const currentProgress = document.getElementById("current-progress");
 
 const sledGehammer = {
     songName: "Sledgehammer",
@@ -39,7 +40,7 @@ function pauseStart(){
 }
 function playPauseDecider(){
     if (isPlaying == true){
-        pauseStart()
+        pauseStart();
     }
     else{
         songStart();
@@ -72,8 +73,14 @@ function nextSong(){
     initializeSong();
     playsong();
 }
+function updateProgressBar(){
+    const barWidth = (song.currentTime/song.duration)*100;
+    currentProgress.style.setProperty("--progress", `${barWidth}%`);
+
+}
 initializeSong();
 
 start.addEventListener("click", playPauseDecider);
 previus.addEventListener("click", previusSong);
 next.addEventListener("click", nextSong);
+song.addEventListener("timeupdate", updateProgressBar);
