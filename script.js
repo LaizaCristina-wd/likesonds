@@ -9,17 +9,17 @@ const previus = document.getElementById("previus");
 const sledGehammer = {
     songName: "Sledgehammer",
     artist: "Rihanna",
-    file: "Sledgehammer"
+    file: "sledgehammer"
 };
 const depecheMode = {
     songName: "Enjoy the Silence",
     artist: "Depechemode",
-    file: "depeche"
+    file: "enjoythesilence"
 };
 const givenUp = {
     songName: "Given Up",
     artist: "Linkin Park",
-    file: "linkin"
+    file: "givenup"
 };
 songName.innerText = "Sledgehammer";
 let isPlaying = false;
@@ -51,5 +51,29 @@ function initializeSong(){
     songName.innerText=playlist[index].songName;
     bandName.innerText=playlist[index].artist;
 }
+function previusSong(){
+    if(index === 0){
+        index = playlist.length - 1;
+    }
+    else{
+        index -= 1;
+    }
+    initializeSong();
+    playsong();
+}
+
+function nextSong(){
+    if(index === playlist.length -1){
+        index = 0;
+    }
+    else{
+        index += 1;
+    }
+    initializeSong();
+    playsong();
+}
 initializeSong();
+
 start.addEventListener("click", playPauseDecider);
+previus.addEventListener("click", previusSong);
+next.addEventListener("click", nextSong);
