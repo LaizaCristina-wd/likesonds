@@ -5,6 +5,7 @@ const cover = document.getElementById("cover");
 const start = document.getElementById("start");
 const next = document.getElementById("next");
 const previus = document.getElementById("previus");
+const likeButton = document.getElementById("like");
 const currentProgress = document.getElementById("current-progress");
 const progressContainer = document.getElementById("progress-container");
 const shuffleButton = document.getElementById("shuffle");
@@ -15,23 +16,26 @@ const totalTime = document.getElementById("total-time");
 const sledGehammer = {
     songName: "Sledgehammer",
     artist: "Rihanna",
-    file: "sledgehammer"
+    file: "sledgehammer",
+    liked: false,
 };
 const depecheMode = {
     songName: "Enjoy the Silence",
     artist: "Depechemode",
-    file: "enjoythesilence"
+    file: "enjoythesilence",
+    liked: false,
 };
 const givenUp = {
     songName: "Given Up",
     artist: "Linkin Park",
-    file: "givenup"
+    file: "givenup",
+    liked: false,
 };
 
 let isPlaying = false;
 let isShuffled = false;
 let repeatOn = false;
-const originalPlaylist = [sledGehammer, depecheMode, givenUp];
+const originalPlaylist = JSON.parse(localStorage.getItem("playlist")) ??[sledGehammer, depecheMode, givenUp];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
@@ -55,6 +59,19 @@ function playPauseDecider(){
         songStart();
     }
 }
+function likebuttonRender(){
+    if(sortedPlaylist[index].liked === true){
+    likeButton.querySelector(".bi").classList.remove("bi-heart");
+    likeButton.querySelector(".bi").classList.add("bi-heart-fill");
+    likeButton.classList.add("button-active");
+    }
+    else{
+        likeButton.querySelector(".bi").classList.add("bi-heart");
+        likeButton.querySelector(".bi").classList.remove("bi-heart-fill");
+        likeButton.classList.remove("button-active");
+    }   
+}
+
 function initializeSong(){
     cover.src = `img/${sortedPlaylist[index].file}.webp`;
     song.src = `songs/${sortedPlaylist[index].file}.mp3`;
@@ -147,6 +164,17 @@ function updateTotalTime(){
   
     totalTime.innerText = toHHMMSS(song.duration);
 }
+function likedButtonCLicked(){
+    if(sortedPlaylist[index].liked == false){
+        sortedPlaylist[index].liked = true;
+    }
+    else{
+        sortedPlaylist[index].liked = false;
+    }
+    likebuttonRender();
+    localStorage.setItem("playlist", JSON.stringify(originalPlaylist));
+}
+
 initializeSong();
 
 start.addEventListener("click", playPauseDecider);
@@ -158,3 +186,4 @@ song.addEventListener("loadedmetadata", updateTotalTime);
 progressContainer.addEventListener("click", jumpTo);
 shuffleButton.addEventListener("click", shuffleButtonClicked);
 repeatButton.addEventListener("click", repeatButtonClicked);
+likeButton.addEventListener("click", likedButtonCLicked);
